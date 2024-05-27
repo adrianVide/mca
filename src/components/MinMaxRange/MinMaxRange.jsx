@@ -4,7 +4,6 @@ const fetchRangeValues = async () => {
   try {
     const response = await fetch("http://demo1209414.mockable.io/minmax");
     const data = await response.json();
-    console.log(data.min);
     return data;
   } catch (error) {
     console.error("Error fetching range values:", error);
