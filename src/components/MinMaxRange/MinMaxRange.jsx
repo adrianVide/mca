@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react";
 
 const fetchRangeValues = async () => {
-  return { min: 1, max: 100 };
+  try {
+    const response = await fetch("http://demo1209414.mockable.io/minmax");
+    const data = await response.json();
+    console.log(data.min);
+    return data;
+  } catch (error) {
+    console.error("Error fetching range values:", error);
+    return { min: 0, max: 0 }; // Return default values in case of an error
+  }
 };
 
 const MinMaxRange = () => {
-  const [rangeValues, setRangeValues] = useState({ min: 0, max: 0 });
+  const [rangeValues, setRangeValues] = useState();
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(0);
 
@@ -43,7 +51,8 @@ const MinMaxRange = () => {
     };
 
   const formatValue = (value) => {
-    let formattedNumber = value.toFixed(2);
+    const parsedValue = parseFloat(value);
+    let formattedNumber = parsedValue.toFixed(2);
     if (formattedNumber.endsWith(".00")) {
       return parseInt(formattedNumber);
     }
@@ -81,6 +90,7 @@ const MinMaxRange = () => {
     getRangeValues();
   }, []);
 
+  if (!rangeValues) return <div className="loading">Loading...</div>;
   return (
     <div className="range-slider">
       <div className="slider-track">
