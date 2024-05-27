@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 
-const fetchRangeValues = async () => {
-  //   const response = await fetch("https://www.mockable.io/api/v1/rangeValues");
-  //   const data = await response.json();
-  return [1.99, 5.99, 10.99, 30.99, 50.99, 70.99];
+const fetchFixedValues = async () => {
+  try {
+    const response = await fetch("http://demo1209414.mockable.io/fixed");
+    const data = await response.json();
+    return data.values;
+  } catch (error) {
+    console.error("Error fetching range values:", error);
+    return [];
+  }
 };
 
 const FixedRange = () => {
@@ -48,14 +53,14 @@ const FixedRange = () => {
 
   useEffect(() => {
     const getRangeValues = async () => {
-      const values = await fetchRangeValues();
+      const values = await fetchFixedValues();
       setRangeValues(values);
       setMinValue(values[0]);
       setMaxValue(values[values.length - 1]);
     };
     getRangeValues();
   }, []);
-  console.log(rangeValues);
+  if (!rangeValues.length) return <div className="loading">Loading...</div>;
   return (
     <div className="range-slider">
       <div className="slider-track">

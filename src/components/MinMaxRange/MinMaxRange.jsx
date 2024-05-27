@@ -7,7 +7,7 @@ const fetchRangeValues = async () => {
     return data;
   } catch (error) {
     console.error("Error fetching range values:", error);
-    return { min: 0, max: 0 }; // Return default values in case of an error
+    return null;
   }
 };
 
