@@ -34,10 +34,8 @@ const FixedRange = () => {
 
       if (isMin && newValue >= maxValue) return;
       if (!isMin && newValue <= minValue) return;
-
       setFunc(newValue);
     };
-
     const handleMouseUp = () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
@@ -71,7 +69,7 @@ const FixedRange = () => {
               (rangeValues.indexOf(minValue) / (rangeValues.length - 1)) * 100
             }%`,
           }}
-          onMouseDown={handleMouseDown("min", setMinValue, maxValue)}
+          onMouseDown={handleMouseDown("min", setMinValue)}
         />
         <div
           className="slider-bullet"
@@ -80,7 +78,7 @@ const FixedRange = () => {
               (rangeValues.indexOf(maxValue) / (rangeValues.length - 1)) * 100
             }%`,
           }}
-          onMouseDown={handleMouseDown("max", setMaxValue, minValue)}
+          onMouseDown={handleMouseDown("max", setMaxValue)}
         />
       </div>
       <div className="values">
