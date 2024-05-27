@@ -59,3 +59,7 @@ nav li a {
 nav li a:hover {
   color: #0077ff; 
 }
+
+.loading {
+  text-align: center;
+}
