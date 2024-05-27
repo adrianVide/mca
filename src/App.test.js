@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders both components in main page', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const minMaxElement = screen.getByText(/Min Max Range/i);
+  const fixedElement = screen.getByText(/Fixed Range/i);
+  expect(minMaxElement).toBeInTheDocument();
+  expect(fixedElement).toBeInTheDocument();
 });
