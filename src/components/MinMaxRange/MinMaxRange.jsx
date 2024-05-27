@@ -4,7 +4,7 @@ const fetchRangeValues = async () => {
   return { min: 1, max: 100 };
 };
 
-const Range = () => {
+const MinMaxRange = () => {
   const [rangeValues, setRangeValues] = useState({ min: 0, max: 0 });
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(0);
@@ -54,7 +54,7 @@ const Range = () => {
     event.preventDefault();
     const newValue = prompt(
       "Enter a value",
-      limit === "min" ? minValue : maxValue
+      limit === "min" ? formatValue(minValue) : formatValue(maxValue)
     );
     if (newValue === null) {
       return;
@@ -119,4 +119,4 @@ const Range = () => {
   );
 };
 
-export default Range;
+export default MinMaxRange;
